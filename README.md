@@ -249,32 +249,32 @@
                 
                 <div class="input-group">
                     <label for="initialCapital">رأس المال الأولي ($)</label>
-                    <input type="number" id="initialCapital" value="10000" min="1">
+                    <input type="number" id="initialCapital" value="" min="1">
                 </div>
                 
                 <div class="input-group">
                     <label for="winRate">نسبة الصفقات الرابحة (%)</label>
-                    <input type="number" id="winRate" value="60" min="0" max="100" step="1">
+                    <input type="number" id="winRate" value="0" min="0" max="100" step="1">
                 </div>
                 
                 <div class="input-group">
                     <label for="profitRate">معدل الربح لكل صفقة (% من رأس المال)</label>
-                    <input type="number" id="profitRate" value="2" min="0" step="0.1">
+                    <input type="number" id="profitRate" value="0" min="0" step="0.1">
                 </div>
                 
                 <div class="input-group">
                     <label for="lossRate">معدل الخسارة لكل صفقة (% من رأس المال)</label>
-                    <input type="number" id="lossRate" value="1" min="0" step="0.1">
+                    <input type="number" id="lossRate" value="0" min="0" step="0.1">
                 </div>
                 
                 <div class="input-group">
                     <label for="updateInterval">عدد الصفقات في كل تحديث</label>
-                    <input type="number" id="updateInterval" value="10" min="1">
+                    <input type="number" id="updateInterval" value="0" min="1">
                 </div>
                 
                 <div class="input-group">
                     <label for="targetCapital">الهدف النهائي ($)</label>
-                    <input type="number" id="targetCapital" value="15000" min="1">
+                    <input type="number" id="targetCapital" value="0" min="1">
                 </div>
                 
                 <button id="calculateBtn">حساب تطور رأس المال</button>
@@ -354,11 +354,11 @@
                 <canvas id="growthChart"></canvas>
             </div>
         </div>
-        
+       
         <footer>
-            <p>تم تطوير هذه الحاسبة باستخدام HTML وCSS وJavaScript - تعمل على GitHub</p>
-            <p>© 2023 حاسبة تطور رأس المال في التداول</p>
-        </footer>
+            <p></p>
+            <p>DIRECT BY ALI MAHMOUD </p>
+         </footer>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
