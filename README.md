@@ -173,7 +173,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background: 
+            background: gray;
             border-radius: 8px;
             overflow: hidden;
         }
