@@ -249,32 +249,32 @@
                 
                 <div class="input-group">
                     <label for="initialCapital">رأس المال الأولي ($)</label>
-                    <input type="number" id="initialCapital" value="10000" min="1">
+                    <input type="number" id="initialCapital" value="" min="1">
                 </div>
                 
                 <div class="input-group">
                     <label for="winRate">نسبة الصفقات الرابحة (%)</label>
-                    <input type="number" id="winRate" value="60" min="0" max="100" step="1">
+                    <input type="number" id="winRate" value="" min="0" max="100" step="1">
                 </div>
                 
                 <div class="input-group">
                     <label for="profitRate">معدل الربح لكل صفقة (% من رأس المال)</label>
-                    <input type="number" id="profitRate" value="2" min="0" step="0.1">
+                    <input type="number" id="profitRate" value="" min="0" step="0.1">
                 </div>
                 
                 <div class="input-group">
                     <label for="lossRate">معدل الخسارة لكل صفقة (% من رأس المال)</label>
-                    <input type="number" id="lossRate" value="1" min="0" step="0.1">
+                    <input type="number" id="lossRate" value="" min="0" step="0.1">
                 </div>
                 
                 <div class="input-group">
-                    <label for="updateInterval">عدد الصفقات في كل تحديث</label>
-                    <input type="number" id="updateInterval" value="10" min="1">
+                    <label for="updateInterval">عدد الصفقات في كل يوم</label>
+                    <input type="number" id="updateInterval" value="" min="1">
                 </div>
                 
                 <div class="input-group">
                     <label for="targetCapital">الهدف النهائي ($)</label>
-                    <input type="number" id="targetCapital" value="15000" min="1">
+                    <input type="number" id="targetCapital" value="" min="1">
                 </div>
                 
                 <button id="calculateBtn">حساب تطور رأس المال</button>
@@ -357,7 +357,7 @@
         
         <footer>
             <p>DIRECTED BY ALI MAHMOUD</p>
-            <p>© 2023 حاسبة تطور رأس المال في التداول</p>
+            <p>حاسبة تطور رأس المال في التداول</p>
         </footer>
     </div>
     
