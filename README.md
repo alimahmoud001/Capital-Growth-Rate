@@ -279,32 +279,32 @@
         <div class="controls">
             <div class="control-group">
                 <label for="initialCapital"><i class="fas fa-wallet"></i> رأس المال الابتدائي ($)</label>
-                <input type="number" id="initialCapital" value="" min="1" step="1">
+                <input type="number" id="initialCapital" value="20" min="1" step="1">
             </div>
             
             <div class="control-group">
                 <label for="winRate"><i class="fas fa-trophy"></i> نسبة الصفقات الرابحة (%)</label>
-                <input type="number" id="winRate" value="" min="1" max="100" step="1">
+                <input type="number" id="winRate" value="80" min="1" max="100" step="1">
             </div>
             
             <div class="control-group">
                 <label for="profitPercent"><i class="fas fa-arrow-up"></i> معدل الربح لكل صفقة (%)</label>
-                <input type="number" id="profitPercent" value="" min="0.1" step="0.1">
+                <input type="number" id="profitPercent" value="3" min="0.1" step="0.1">
             </div>
             
             <div class="control-group">
                 <label for="lossPercent"><i class="fas fa-arrow-down"></i> معدل الخسارة لكل صفقة (%)</label>
-                <input type="number" id="lossPercent" value="" min="0.1" step="0.1">
+                <input type="number" id="lossPercent" value="1" min="0.1" step="0.1">
             </div>
             
             <div class="control-group">
                 <label for="tradeStep"><i class="fas fa-step-forward"></i> عدد الصفقات بين كل تحديث</label>
-                <input type="number" id="tradeStep" value="" min="1" step="1">
+                <input type="number" id="tradeStep" value="10" min="1" step="1">
             </div>
             
             <div class="control-group">
                 <label for="target"><i class="fas fa-bullseye"></i> الهدف المالي ($)</label>
-                <input type="number" id="target" value="" min="1000" step="1000">
+                <input type="number" id="target" value="1000000" min="1000" step="1000">
             </div>
             
             <div class="btn-container">
@@ -338,6 +338,18 @@
                 </ul>
             </div>
             
+            <div class="card">
+                <h2><i class="fas fa-lightbulb"></i> نصائح للنجاح</h2>
+                <ul>
+                    <li>التزم بنسبة المخاطرة المحددة</li>
+                    <li>استخدم أوامر وقف الخسارة في كل صفقة</li>
+                    <li>حافظ على الانضباط النفسي والمالي</li>
+                    <li>تجنب الرافعة المالية العالية</li>
+                    <li>أعد تقييم استراتيجيتك شهريًا</li>
+                    <li>استثمر في تعليمك المستمر</li>
+                    <li>لا تخاطر بأكثر من 2% من رأس المال</li>
+                </ul>
+            </div>
         </div>
         
         <div class="table-container">
@@ -357,6 +369,14 @@
             </table>
         </div>
         
+        <div class="footer-note">
+            <h2><i class="fas fa-exclamation-triangle"></i> ملاحظات هامة</h2>
+            <p>1. هذا النموذج رياضي نظري ويعتمد على ثبات النسب المذكورة، وفي الواقع قد توجد تقلبات.</p>
+            <p>2. <span class="warning">الاستثمار في الأسواق المالية ينطوي على مخاطر</span> وقد يؤدي إلى خسارة جزء أو كل رأس المال.</p>
+            <p>3. هذه الخطة تتطلب انضباطًا صارمًا في إدارة المخاطر ومواكبة السوق باستمرار.</p>
+            <p>4. للوصول بشكل أسرع، يُنصح البدء برأس مال أكبر مع الحفاظ على نسب المخاطرة الآمنة.</p>
+            <p>5. هذه ليست نصيحة مالية، ويجب استشارة مستشار مالي متخصص قبل اتخاذ أي قرار استثماري.</p>
+        </div>
     </div>
 
     <script>
@@ -499,54 +519,4 @@
             }
             
             // دالة لإضافة صف للجدول
-            function addTableRow(trades, capital, initial) {
-                const row = document.createElement('tr');
-                
-                // تحديد الملاحظات
-                let notes = '';
-                if (trades === 0) {
-                    notes = 'رأس المال الابتدائي';
-                } else if (capital >= 1000 && capital < 10000) {
-                    notes = 'ألف دولار';
-                } else if (capital >= 10000 && capital < 100000) {
-                    notes = 'عشرة آلاف دولار';
-                } else if (capital >= 100000 && capital < 1000000) {
-                    notes = 'مائة ألف دولار';
-                } else if (capital >= 1000000) {
-                    notes = 'مليون دولار!';
-                }
-                
-                // حساب معدل النمو الإجمالي
-                const growthFactor = (capital / initial).toFixed(1);
-                
-                // تحديد إذا كان هذا الصف هو صف الهدف
-                const target = parseFloat(targetInput.value);
-                if (capital >= target) {
-                    row.classList.add('million-row');
-                }
-                
-                row.innerHTML = `
-                    <td>${trades}</td>
-                    <td class="${capital >= target ? 'milestone' : ''}">$${formatNumber(capital)}</td>
-                    <td>${growthFactor}x</td>
-                    <td>${notes}</td>
-                `;
-                
-                resultsTable.appendChild(row);
-            }
-            
-            // تعيين القيم الافتراضية عند التحميل
-            generateTable();
-            
-            // إضافة مستمع الأحداث لزر الحساب
-            calculateBtn.addEventListener('click', generateTable);
-            
-            // تحديث النتائج عند تغيير أي إدخال
-            const inputs = document.querySelectorAll('.controls input');
-            inputs.forEach(input => {
-                input.addEventListener('input', generateTable);
-            });
-        });
-    </script>
-</body>
-</html>
+            function addTableRow(trades, capital, initi
