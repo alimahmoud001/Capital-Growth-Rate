@@ -11,7 +11,7 @@
             --success: #27ae60;
             --warning: #f39c12;
             --danger: #e74c3c;
-            --light: #ecf0f1;
+            --light: #27ae60;
             --dark: #2c3e50;
         }
         
@@ -173,7 +173,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background: gray;
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 8px;
             overflow: hidden;
         }
