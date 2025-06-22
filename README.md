@@ -1,2 +1,2 @@
 # Capital-Growth-Rate
-<a href=".//Capital-Growth-Rate.md" class="btn btn-outline">ملف المساهمة</a>
+<a href="./Capital-Growth-Rate.md" class="btn btn-outline">ملف المساهمة</a>
