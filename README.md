@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+
+
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حاسبة تطور رأس المال في التداول</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #2c3e50;
@@ -12,9 +12,8 @@
             --success: #27ae60;
             --warning: #f39c12;
             --danger: #e74c3c;
-            --light: #ecf0f1;
+            --light: #27ae60;
             --dark: #2c3e50;
-            --mobile-breakpoint: 768px;
         }
         
         * {
@@ -28,10 +27,8 @@
             background: linear-gradient(135deg, #1a2a3a, #2c3e50);
             color: var(--light);
             min-height: 100vh;
-            padding: 15px;
+            padding: 20px;
             line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
         }
         
         .container {
@@ -41,45 +38,32 @@
         
         header {
             text-align: center;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 20px 0;
+            margin-bottom: 30px;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-        
-        .mobile-menu-btn {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            display: none;
-            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             color: var(--light);
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         header p {
-            font-size: 1rem;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
             color: #bdc3c7;
-            max-width: 100%;
         }
         
         .main-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 30px;
+            margin-bottom: 40px;
         }
         
         @media (max-width: 900px) {
@@ -91,37 +75,34 @@
         .card {
             background: rgba(44, 62, 80, 0.7);
             border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
         
         .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            padding-bottom: 12px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 2px solid var(--secondary);
             color: var(--light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .card-title i {
-            font-size: 1.2rem;
         }
         
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 500;
             color: #bdc3c7;
-            font-size: 0.95rem;
         }
         
         input {
@@ -145,7 +126,7 @@
             background: var(--secondary);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 14px 25px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 1.1rem;
@@ -153,61 +134,55 @@
             transition: all 0.3s ease;
             width: 100%;
             margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            letter-spacing: 1px;
         }
         
         button:hover {
             background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
         }
         
         .result-box {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .result-value {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin: 8px 0;
+            margin: 10px 0;
             color: var(--success);
         }
         
         .result-label {
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             color: #bdc3c7;
-        }
-        
-        .table-container {
-            overflow-x: auto;
-            margin-top: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
         }
         
         th, td {
-            padding: 12px 10px;
+            padding: 15px;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.95rem;
         }
         
         th {
@@ -236,272 +211,78 @@
         
         .chart-container {
             height: 300px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         
         footer {
             text-align: center;
-            padding: 15px;
-            margin-top: 30px;
+            padding: 20px;
+            margin-top: 40px;
             color: #7f8c8d;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
         }
         
-        /* تحسينات خاصة بالجوال */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            header {
-                padding: 12px;
-                margin-bottom: 15px;
-            }
-            
-            header h1 {
-                font-size: 1.5rem;
-                padding: 0 30px;
-            }
-            
-            header p {
-                font-size: 0.9rem;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .card {
-                padding: 15px;
-            }
-            
-            .card-title {
-                font-size: 1.3rem;
-            }
-            
-            input {
-                padding: 10px 12px;
-                font-size: 0.95rem;
-            }
-            
-            button {
-                padding: 12px;
-                font-size: 1rem;
-            }
-            
-            .results-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .result-box {
-                padding: 12px;
-            }
-            
-            .result-value {
-                font-size: 1.3rem;
-            }
-            
-            .result-label {
-                font-size: 0.9rem;
-            }
-            
-            .chart-container {
-                height: 250px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.3rem;
-                padding: 0 20px;
-            }
-            
-            .card-title {
-                font-size: 1.2rem;
-            }
-            
-            .result-value {
-                font-size: 1.2rem;
-            }
-            
-            th, td {
-                padding: 10px 8px;
-                font-size: 0.85rem;
-            }
-        }
-        
-        /* تحسينات لوضعية الأفقي (Landscape) */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .main-content {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .card {
-                padding: 12px;
-            }
-            
-            .input-group {
-                margin-bottom: 10px;
-            }
-            
-            input {
-                padding: 8px 10px;
-                font-size: 0.9rem;
-            }
-            
-            button {
-                padding: 10px;
-                font-size: 0.95rem;
-            }
-            
-            .chart-container {
-                height: 200px;
-            }
-        }
-        
-        /* تحسينات للوضع الليلي وتجربة اللمس */
-        .touch-optimized {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-        
-        input, button {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-        
-        button:active {
-            transform: scale(0.98);
-        }
-        
-        /* تحسينات للوضع الليلي */
-        @media (prefers-color-scheme: light) {
-            body {
-                background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
-                color: #2c3e50;
-            }
-            
-            header {
-                background: rgba(255, 255, 255, 0.7);
-            }
-            
-            header h1 {
-                color: #2c3e50;
-            }
-            
-            header p {
-                color: #7f8c8d;
-            }
-            
-            .card {
-                background: rgba(255, 255, 255, 0.7);
-            }
-            
-            .card-title {
-                color: #2c3e50;
-            }
-            
-            label {
-                color: #2c3e50;
-            }
-            
-            input {
-                background: rgba(255, 255, 255, 0.8);
-                color: #2c3e50;
-                border: 1px solid #d1d8e0;
-            }
-            
-            input:focus {
-                background: rgba(255, 255, 255, 0.9);
-            }
-            
-            .result-box {
-                background: rgba(255, 255, 255, 0.8);
-            }
-            
-            .result-label {
-                color: #2c3e50;
-            }
-            
-            table {
-                background: rgba(255, 255, 255, 0.8);
-            }
-            
-            th {
-                background: rgba(52, 152, 219, 0.2);
-                color: #2c3e50;
-            }
-            
-            th, td {
-                border-bottom: 1px solid #d1d8e0;
-            }
-            
-            tr:hover {
-                background: rgba(52, 152, 219, 0.1);
-            }
-            
-            footer {
-                color: #7f8c8d;
-                border-top: 1px solid #d1d8e0;
-            }
+        .info-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 12px;
+            margin-left: 5px;
+            cursor: help;
         }
     </style>
 </head>
-<body class="touch-optimized">
+<body>
     <div class="container">
         <header>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
             <h1>حاسبة تطور رأس المال في التداول</h1>
-            <p>أدخل بيانات التداول الخاصة بك لحساب معدل نمو رأس المال المتوقع</p>
+            <p>أدخل بيانات التداول الخاصة بك لحساب معدل نمو رأس المال المتوقع بناءً على نسبة الصفقات الرابحة والخاسرة</p>
         </header>
         
         <div class="main-content">
             <div class="card">
-                <h2 class="card-title"><i class="fas fa-calculator"></i> بيانات التداول</h2>
+                <h2 class="card-title">بيانات التداول</h2>
                 
                 <div class="input-group">
-                    <label for="initialCapital"><i class="fas fa-coins"></i> رأس المال الأولي ($)</label>
-                    <input type="number" id="initialCapital" value="10000" min="1">
+                    <label for="initialCapital">رأس المال الأولي ($)</label>
+                    <input type="number" id="initialCapital" value="" min="1">
                 </div>
                 
                 <div class="input-group">
-                    <label for="winRate"><i class="fas fa-chart-line"></i> نسبة الصفقات الرابحة (%)</label>
-                    <input type="number" id="winRate" value="60" min="0" max="100" step="1">
+                    <label for="winRate">نسبة الصفقات الرابحة (%)</label>
+                    <input type="number" id="winRate" value="" min="0" max="100" step="1">
                 </div>
                 
                 <div class="input-group">
-                    <label for="profitRate"><i class="fas fa-trophy"></i> معدل الربح لكل صفقة (% من رأس المال)</label>
-                    <input type="number" id="profitRate" value="2" min="0" step="0.1">
+                    <label for="profitRate">معدل الربح لكل صفقة (% من رأس المال)</label>
+                    <input type="number" id="profitRate" value="" min="0" step="0.1">
                 </div>
                 
                 <div class="input-group">
-                    <label for="lossRate"><i class="fas fa-exclamation-triangle"></i> معدل الخسارة لكل صفقة (% من رأس المال)</label>
-                    <input type="number" id="lossRate" value="1" min="0" step="0.1">
+                    <label for="lossRate">معدل الخسارة لكل صفقة (% من رأس المال)</label>
+                    <input type="number" id="lossRate" value="" min="0" step="0.1">
                 </div>
                 
                 <div class="input-group">
-                    <label for="updateInterval"><i class="fas fa-sync-alt"></i> عدد الصفقات في كل تحديث</label>
-                    <input type="number" id="updateInterval" value="10" min="1">
+                    <label for="updateInterval">عدد الصفقات في كل يوم</label>
+                    <input type="number" id="updateInterval" value="" min="1">
                 </div>
                 
                 <div class="input-group">
-                    <label for="targetCapital"><i class="fas fa-bullseye"></i> الهدف النهائي ($)</label>
-                    <input type="number" id="targetCapital" value="15000" min="1">
+                    <label for="targetCapital">الهدف النهائي ($)</label>
+                    <input type="number" id="targetCapital" value="" min="1">
                 </div>
                 
-                <button id="calculateBtn">
-                    <i class="fas fa-calculator"></i> حساب تطور رأس المال
-                </button>
+                <button id="calculateBtn">حساب تطور رأس المال</button>
             </div>
             
             <div class="card">
-                <h2 class="card-title"><i class="fas fa-chart-bar"></i> النتائج</h2>
+                <h2 class="card-title">النتائج</h2>
                 
                 <div class="results-grid">
                     <div class="result-box">
@@ -520,11 +301,9 @@
                     </div>
                 </div>
                 
-                <h3 style="margin-top: 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                    <i class="fas fa-table"></i> تطور رأس المال
-                </h3>
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">تطور رأس المال</h3>
                 
-                <div class="table-container">
+                <div class="table-responsive">
                     <table id="resultsTable">
                         <thead>
                             <tr>
@@ -571,15 +350,15 @@
         </div>
         
         <div class="card">
-            <h2 class="card-title"><i class="fas fa-chart-line"></i> مخطط تطور رأس المال</h2>
+            <h2 class="card-title">مخطط تطور رأس المال</h2>
             <div class="chart-container">
                 <canvas id="growthChart"></canvas>
             </div>
         </div>
         
         <footer>
-            <p>تم تطوير هذه الحاسبة باستخدام HTML وCSS وJavaScript - تعمل على GitHub</p>
-            <p>© 2023 حاسبة تطور رأس المال في التداول</p>
+            <p>DIRECTED BY ALI MAHMOUD</p>
+            <p>حاسبة تطور رأس المال في التداول</p>
         </footer>
     </div>
     
@@ -588,123 +367,112 @@
         document.addEventListener('DOMContentLoaded', function() {
             const calculateBtn = document.getElementById('calculateBtn');
             const ctx = document.getElementById('growthChart').getContext('2d');
-            let growthChart;
             
-            // Initialize chart
-            function initChart() {
-                growthChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['0', '10', '20', '30', '40', '50'],
-                        datasets: [{
-                            label: 'رأس المال',
-                            data: [10000, 10830, 11730, 12708, 13764, 14913],
-                            borderColor: '#3498db',
-                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                            borderWidth: 3,
-                            pointBackgroundColor: '#fff',
-                            pointRadius: 5,
-                            pointHoverRadius: 7,
-                            fill: true,
-                            tension: 0.3
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                labels: {
-                                    color: '#ecf0f1',
-                                    font: {
-                                        size: 14
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                backgroundColor: 'rgba(44, 62, 80, 0.9)',
-                                titleColor: '#ecf0f1',
-                                bodyColor: '#ecf0f1',
-                                titleFont: {
-                                    size: 16
-                                },
-                                bodyFont: {
+            // نموذج بيانات الرسم البياني
+            let growthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0', '10', '20', '30', '40', '50'],
+                    datasets: [{
+                        label: 'رأس المال',
+                        data: [10000, 10830, 11730, 12708, 13764, 14913],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ecf0f1',
+                                font: {
                                     size: 14
-                                },
-                                padding: 12,
-                                displayColors: false
+                                }
                             }
                         },
-                        scales: {
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'عدد الصفقات',
-                                    color: '#bdc3c7',
-                                    font: {
-                                        size: 14,
-                                        weight: 'bold'
-                                    }
-                                },
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                },
-                                ticks: {
-                                    color: '#ecf0f1'
+                        tooltip: {
+                            backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                            titleColor: '#ecf0f1',
+                            bodyColor: '#ecf0f1',
+                            titleFont: {
+                                size: 16
+                            },
+                            bodyFont: {
+                                size: 14
+                            },
+                            padding: 12,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'عدد الصفقات',
+                                color: '#bdc3c7',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
                                 }
                             },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: 'رأس المال ($)',
-                                    color: '#bdc3c7',
-                                    font: {
-                                        size: 14,
-                                        weight: 'bold'
-                                    }
-                                },
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                },
-                                ticks: {
-                                    color: '#ecf0f1',
-                                    callback: function(value) {
-                                        return '$' + value.toLocaleString();
-                                    }
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ecf0f1'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'رأس المال ($)',
+                                color: '#bdc3c7',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ecf0f1',
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
                                 }
                             }
                         }
                     }
-                });
-            }
-            
-            // Initialize the chart
-            initChart();
+                }
+            });
             
             calculateBtn.addEventListener('click', calculate);
             
-            // Calculate on page load
+            // حساب النتائج عند التحميل
             calculate();
             
             function calculate() {
-                // Get input values
-                const initialCapital = parseFloat(document.getElementById('initialCapital').value) || 10000;
-                const winRate = parseFloat(document.getElementById('winRate').value) || 60;
-                const profitRate = parseFloat(document.getElementById('profitRate').value) || 2;
-                const lossRate = parseFloat(document.getElementById('lossRate').value) || 1;
-                const updateInterval = parseInt(document.getElementById('updateInterval').value) || 10;
-                const targetCapital = parseFloat(document.getElementById('targetCapital').value) || 15000;
+                // الحصول على القيم من حقول الإدخال
+                const initialCapital = parseFloat(document.getElementById('initialCapital').value);
+                const winRate = parseFloat(document.getElementById('winRate').value) / 100;
+                const profitRate = parseFloat(document.getElementById('profitRate').value) / 100;
+                const lossRate = parseFloat(document.getElementById('lossRate').value) / 100;
+                const updateInterval = parseInt(document.getElementById('updateInterval').value);
+                const targetCapital = parseFloat(document.getElementById('targetCapital').value);
                 
-                // Convert percentages to decimals
-                const winRateDecimal = winRate / 100;
-                const profitRateDecimal = profitRate / 100;
-                const lossRateDecimal = lossRate / 100;
-                
-                // Calculate expected return per trade
-                const expectedReturn = (winRateDecimal * profitRateDecimal) - ((1 - winRateDecimal) * lossRateDecimal);
+                // حساب متوسط العائد لكل صفقة
+                const expectedReturn = (winRate * profitRate) - ((1 - winRate) * lossRate);
                 document.getElementById('avgReturn').textContent = (expectedReturn * 100).toFixed(2) + '%';
                 
-                // Calculate required trades
+                // حساب عدد الصفقات المطلوبة
                 let nTrades;
                 if (expectedReturn <= 0) {
                     nTrades = '∞ (لا يمكن تحقيق الهدف)';
@@ -713,32 +481,37 @@
                 }
                 document.getElementById('tradesRequired').textContent = nTrades;
                 
-                // Calculate overall growth
+                // حساب معدل النمو الإجمالي
                 const overallGrowth = ((targetCapital - initialCapital) / initialCapital) * 100;
                 document.getElementById('overallGrowth').textContent = overallGrowth.toFixed(2) + '%';
                 
-                // Calculate capital evolution
+                // حساب تطور رأس المال
                 const results = [];
                 let tradeCount = 0;
                 let currentCapital = initialCapital;
                 
                 while (tradeCount <= (typeof nTrades === 'number' ? nTrades : 1000)) {
+                    // إضافة النتيجة الحالية
                     results.push({
                         trades: tradeCount,
                         capital: currentCapital,
                         growth: ((currentCapital - initialCapital) / initialCapital) * 100
                     });
                     
+                    // التوقف عند الوصول أو تجاوز الهدف
                     if (currentCapital >= targetCapital || tradeCount > 1000) break;
                     
+                    // الانتقال إلى الدفعة التالية من الصفقات
                     tradeCount += updateInterval;
+                    
+                    // حساب رأس المال الجديد
                     currentCapital = initialCapital * Math.pow(1 + expectedReturn, tradeCount);
                 }
                 
-                // Update table
+                // تحديث الجدول
                 updateTable(results);
                 
-                // Update chart
+                // تحديث الرسم البياني
                 updateChart(results);
             }
             
@@ -778,19 +551,7 @@
                 growthChart.data.datasets[0].data = data;
                 growthChart.update();
             }
-            
-            // Handle mobile menu button
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            mobileMenuBtn.addEventListener('click', function() {
-                alert('استخدم زر الحساب لتحديث النتائج. قم بتعديل البيانات ثم اضغط "حساب تطور رأس المال"');
-            });
-            
-            // Prevent zooming on mobile
-            document.addEventListener('touchmove', function(event) {
-                if (event.scale !== 1) { event.preventDefault(); }
-            }, { passive: false });
         });
     </script>
 </body>
 </html>
-
