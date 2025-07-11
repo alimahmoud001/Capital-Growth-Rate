@@ -178,7 +178,7 @@
             width: 100%;
             overflow-x: auto;
             height: 70vh;
-            min-height: 400px;
+            height: 400px;
 
         }
         
