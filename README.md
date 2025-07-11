@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -27,51 +27,66 @@
             background-color: #f5f7fa;
             color: var(--dark-color);
             line-height: 1.6;
+            padding: 0;
         }
         
         .container {
-            max-width: 100%;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
         }
         
         header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             padding: 1rem;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         h1 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
         }
         
         .calculator {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
         
-        @media (max-width: 100%) {
+        @media (min-width: 992px) {
             .calculator {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
             }
         }
         
         .input-section, .result-section {
             background-color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 1.25rem;
+            border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
         
         label {
@@ -79,15 +94,29 @@
             margin-bottom: 0.5rem;
             font-weight: 600;
             color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+        
+        @media (min-width: 768px) {
+            label {
+                font-size: 1rem;
+            }
         }
         
         input {
             width: 100%;
-            padding: 0.75rem;
+            padding: 0.65rem;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: border-color 0.3s;
+        }
+        
+        @media (min-width: 768px) {
+            input {
+                padding: 0.75rem;
+                font-size: 1rem;
+            }
         }
         
         input:focus {
@@ -100,13 +129,14 @@
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1rem;
             font-weight: 600;
             transition: background-color 0.3s;
             width: 100%;
+            margin-top: 0.5rem;
         }
         
         button:hover {
@@ -116,30 +146,38 @@
         .result-card {
             background-color: white;
             padding: 1rem;
-            border-radius: 8px;
+            border-radius: 6px;
             margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             border-left: 4px solid var(--accent-color);
         }
         
         .result-title {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #6c757d;
             margin-bottom: 0.5rem;
         }
         
         .result-value {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--primary-color);
         }
         
+        @media (min-width: 768px) {
+            .result-value {
+                font-size: 1.5rem;
+            }
+        }
+        
         .chart-container {
             background-color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 1.25rem;
+            border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            margin-top: 2rem;
+            margin-top: 1.5rem;
+            width: 100%;
+            overflow-x: auto;
         }
         
         .positive {
@@ -148,6 +186,25 @@
         
         .negative {
             color: var(--danger-color);
+        }
+        
+        /* تحسينات للشاشات الصغيرة جداً */
+        @media (max-width: 400px) {
+            .container {
+                padding: 0.75rem;
+            }
+            
+            header {
+                padding: 0.75rem;
+            }
+            
+            .input-section, .result-section {
+                padding: 1rem;
+            }
+            
+            .result-card {
+                padding: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -194,7 +251,7 @@
             </div>
             
             <div class="result-section">
-                <h2 style="margin-bottom: 1.5rem; color: var(--secondary-color);">النتائج</h2>
+                <h2 style="margin-bottom: 1.25rem; color: var(--secondary-color); font-size: 1.25rem;">النتائج</h2>
                 
                 <div class="result-card">
                     <div class="result-title">متوسط العائد لكل صفقة</div>
@@ -214,8 +271,10 @@
         </div>
         
         <div class="chart-container">
-            <h2 style="margin-bottom: 1rem; color: var(--secondary-color);">مخطط تطور رأس المال</h2>
-            <canvas id="capitalChart"></canvas>
+            <h2 style="margin-bottom: 1rem; color: var(--secondary-color); font-size: 1.25rem;">مخطط تطور رأس المال</h2>
+            <div style="width: 100%; min-width: 300px;">
+                <canvas id="capitalChart"></canvas>
+            </div>
         </div>
     </div>
 
@@ -292,6 +351,11 @@
                     capitalChart.destroy();
                 }
                 
+                // Adjust font sizes for mobile
+                const isMobile = window.innerWidth < 768;
+                const baseFontSize = isMobile ? 10 : 12;
+                const titleFontSize = isMobile ? 12 : 14;
+                
                 capitalChart = new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -324,16 +388,28 @@
                     },
                     options: {
                         responsive: true,
+                        maintainAspectRatio: true,
                         plugins: {
                             legend: {
                                 position: 'top',
-                                rtl: true
+                                rtl: true,
+                                labels: {
+                                    font: {
+                                        size: baseFontSize
+                                    }
+                                }
                             },
                             tooltip: {
                                 callbacks: {
                                     label: function(context) {
                                         return context.dataset.label + ': ' + context.parsed.y.toFixed(2) + '$';
                                     }
+                                },
+                                bodyFont: {
+                                    size: baseFontSize
+                                },
+                                titleFont: {
+                                    size: baseFontSize
                                 }
                             }
                         },
@@ -343,7 +419,13 @@
                                     display: true,
                                     text: 'عدد الصفقات',
                                     font: {
-                                        weight: 'bold'
+                                        weight: 'bold',
+                                        size: titleFontSize
+                                    }
+                                },
+                                ticks: {
+                                    font: {
+                                        size: baseFontSize
                                     }
                                 }
                             },
@@ -352,7 +434,13 @@
                                     display: true,
                                     text: 'رأس المال ($)',
                                     font: {
-                                        weight: 'bold'
+                                        weight: 'bold',
+                                        size: titleFontSize
+                                    }
+                                },
+                                ticks: {
+                                    font: {
+                                        size: baseFontSize
                                     }
                                 },
                                 beginAtZero: false
@@ -365,6 +453,13 @@
                     }
                 });
             }
+
+            // إعادة رسم المخطط عند تغيير حجم الشاشة
+            window.addEventListener('resize', function() {
+                if (capitalChart) {
+                    capitalChart.update();
+                }
+            });
         });
     </script>
 </body>
