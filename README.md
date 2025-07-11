@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -178,6 +177,8 @@
             margin-top: 1.5rem;
             width: 100%;
             overflow-x: auto;
+            min-height: 400px;
+            height: 70vh;
         }
         
         .positive {
@@ -272,7 +273,7 @@
         
         <div class="chart-container">
             <h2 style="margin-bottom: 1rem; color: var(--secondary-color); font-size: 1.25rem;">مخطط تطور رأس المال</h2>
-            <div style="width: 100%; min-width: 300px;">
+            <div style="width: 100%; min-width: 300px; hight: 400px;">
                 <canvas id="capitalChart"></canvas>
             </div>
         </div>
