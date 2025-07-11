@@ -3,469 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حاسبة تطور رأس المال في التداول</title>
+    <title>حاسبة تطور رأس المال</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --success: #4cc9f0;
-            --danger: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --white: #ffffff;
+            --primary-color: #4CAF50; /* Green */
+            --secondary-color: #2196F3; /* Blue */
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333;
+            --border-radius: 12px;
+            --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
+
         body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #f5f7fa;
-            color: var(--dark);
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 20px;
+            margin: 0;
+            box-sizing: border-box;
             line-height: 1.6;
         }
-        
+
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1300px;
+            width: 100%;
         }
-        
-        header {
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .input-section {
+            flex: 1;
+            min-width: 350px;
+            max-width: 450px;
+        }
+
+        .results-section {
+            flex: 1;
+            min-width: 350px;
+            max-width: 450px;
+        }
+
+        .chart-section {
+            flex-basis: 100%;
+            min-height: 450px;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
             text-align: center;
             margin-bottom: 30px;
-            padding: 20px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 10px;
         }
-        
-        .card {
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            padding: 25px;
-            margin-bottom: 25px;
-        }
-        
-        .card-title {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
-        }
-        
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        
+
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark);
+            font-weight: 600;
+            color: #555;
         }
-        
-        input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
+
+        input[type="number"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid #e0e0e0;
             border-radius: 8px;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            font-size: 16px;
+            background-color: #fdfdfd;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        input:focus {
-            border-color: var(--accent);
+
+        input[type="number"]:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
         }
-        
-        .btn {
-            display: inline-block;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            margin: 20px auto;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-        
-        .btn:active {
-            transform: translateY(0);
-        }
-        
-        .results-section {
-            display: none;
-        }
-        
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .summary-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .summary-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .summary-card h3 {
-            color: var(--gray);
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-        
-        .summary-value {
-            font-size: 1.8rem;
+            border-radius: var(--border-radius);
+            font-size: 18px;
             font-weight: 700;
-            color: var(--primary);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 30px;
         }
-        
-        .positive {
-            color: var(--success);
+
+        button:hover {
+            background-color: #43A047; /* Darker green */
+            transform: translateY(-2px);
         }
-        
-        .negative {
-            color: var(--danger);
+
+        .results-output p {
+            background-color: #e8f5e9; /* Light green background */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 17px;
+            font-weight: 600;
+            color: #2e7d32; /* Darker green text */
         }
-        
-        .chart-container {
-            position: relative;
-            height: 400px;
-            margin: 30px 0;
-            background: white;
+
+        .results-output span {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        canvas {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        th, td {
-            padding: 12px 15px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-        
-        th {
-            background-color: var(--primary);
-            color: white;
-            font-weight: 500;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        
-        tr:hover {
-            background-color: #f1f3ff;
-        }
-        
+
         @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
+            .container {
+                flex-direction: column;
+                align-items: center;
             }
-            
-            .summary-cards {
-                grid-template-columns: 1fr;
+            .input-section, .results-section, .chart-section {
+                width: 100%;
+                max-width: 600px;
             }
-            
-            .chart-container {
-                height: 300px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
+            body {
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>حاسبة تطور رأس المال في التداول</h1>
-            <p>أدخل بياناتك لمعرفة تطور رأس مالك مع مرور الوقت</p>
-        </header>
-        
-        <div class="card">
-            <h2 class="card-title">بيانات الإدخال</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="initialCapital">رأس المال الأولي</label>
-                    <input type="number" id="initialCapital" placeholder="مثال: 10000">
-                </div>
-                
-                <div class="form-group">
-                    <label for="winRate">نسبة الصفقات الرابحة (%)</label>
-                    <input type="number" id="winRate" placeholder="مثال: 60" min="0" max="100">
-                </div>
-                
-                <div class="form-group">
-                    <label for="profitRate">معدل الربح لكل صفقة (%)</label>
-                    <input type="number" id="profitRate" placeholder="مثال: 5">
-                </div>
-                
-                <div class="form-group">
-                    <label for="lossRate">معدل الخسارة لكل صفقة (%)</label>
-                    <input type="number" id="lossRate" placeholder="مثال: 2">
-                </div>
-                
-                <div class="form-group">
-                    <label for="updateInterval">عدد الصفقات في كل تحديث</label>
-                    <input type="number" id="updateInterval" placeholder="مثال: 10" min="1">
-                </div>
-                
-                <div class="form-group">
-                    <label for="targetCapital">الهدف النهائي</label>
-                    <input type="number" id="targetCapital" placeholder="مثال: 20000">
-                </div>
+        <div class="card input-section">
+            <h2>المدخلات</h2>
+            <div class="form-group">
+                <label for="initialCapital">رأس المال الأولي ($)</label>
+                <input type="number" id="initialCapital" value="10000" min="1">
             </div>
-            
-            <button class="btn" onclick="calculateGrowth()">حساب التطور</button>
+            <div class="form-group">
+                <label for="winRate">نسبة الصفقات الرابحة (%)</label>
+                <input type="number" id="winRate" value="55" min="0" max="100">
+            </div>
+            <div class="form-group">
+                <label for="profitPerTrade">معدل الربح لكل صفقة (% من رأس المال)</label>
+                <input type="number" id="profitPerTrade" value="2" min="0">
+            </div>
+            <div class="form-group">
+                <label for="lossPerTrade">معدل الخسارة لكل صفقة (% من رأس المال)</label>
+                <input type="number" id="lossPerTrade" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="tradesPerUpdate">عدد الصفقات (x) في كل تحديث عرض</label>
+                <input type="number" id="tradesPerUpdate" value="50" min="1">
+            </div>
+            <div class="form-group">
+                <label for="targetCapital">الهدف النهائي ($)</label>
+                <input type="number" id="targetCapital" value="20000" min="0">
+            </div>
+            <button onclick="calculateGrowth()">حساب ورسم التطور</button>
         </div>
-        
-        <div id="resultsSection" class="results-section">
-            <div class="card">
-                <h2 class="card-title">النتائج الرئيسية</h2>
-                
-                <div class="summary-cards">
-                    <div class="summary-card">
-                        <h3>متوسط العائد لكل صفقة</h3>
-                        <div class="summary-value" id="avgReturn">0%</div>
-                    </div>
-                    
-                    <div class="summary-card">
-                        <h3>عدد الصفقات المطلوبة</h3>
-                        <div class="summary-value" id="totalTrades">0</div>
-                    </div>
-                    
-                    <div class="summary-card">
-                        <h3>معدل النمو الإجمالي</h3>
-                        <div class="summary-value" id="totalGrowth">0%</div>
-                    </div>
-                </div>
-                
-                <div class="chart-container">
-                    <canvas id="capitalChart"></canvas>
-                </div>
+
+        <div class="card results-section">
+            <h2>النتائج</h2>
+            <div class="results-output">
+                <p>متوسط العائد لكل صفقة: <span id="averageReturn">0%</span></p>
+                <p>عدد الصفقات المطلوبة للهدف: <span id="requiredTrades">0</span></p>
+                <p>معدل النمو الإجمالي (لعدد الصفقات المعروضة): <span id="totalGrowth">0%</span></p>
             </div>
-            
-            <div class="card">
-                <h2 class="card-title">تفاصيل التطور</h2>
-                <div style="overflow-x: auto;">
-                    <table id="resultsTable">
-                        <thead>
-                            <tr>
-                                <th>عدد الصفقات</th>
-                                <th>رأس المال</th>
-                                <th>التغير</th>
-                                <th>نسبة النمو</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultsBody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        </div>
+
+        <div class="card chart-section">
+            <h2>مخطط تطور رأس المال</h2>
+            <canvas id="capitalGrowthChart"></canvas>
         </div>
     </div>
 
     <script>
-        let capitalChart = null;
-        
+        let capitalChart;
+
         function calculateGrowth() {
-            // الحصول على قيم المدخلات
             const initialCapital = parseFloat(document.getElementById('initialCapital').value);
             const winRate = parseFloat(document.getElementById('winRate').value) / 100;
-            const profitRate = parseFloat(document.getElementById('profitRate').value) / 100;
-            const lossRate = parseFloat(document.getElementById('lossRate').value) / 100;
-            const updateInterval = parseInt(document.getElementById('updateInterval').value);
+            const profitPerTrade = parseFloat(document.getElementById('profitPerTrade').value) / 100;
+            const lossPerTrade = parseFloat(document.getElementById('lossPerTrade').value) / 100;
+            const tradesPerUpdate = parseInt(document.getElementById('tradesPerUpdate').value);
             const targetCapital = parseFloat(document.getElementById('targetCapital').value);
-            
-            // التحقق من صحة المدخلات
-            if (isNaN(initialCapital) {
-                alert("الرجاء إدخال رأس المال الأولي");
+
+            if (isNaN(initialCapital) || isNaN(winRate) || isNaN(profitPerTrade) || isNaN(lossPerTrade) || isNaN(tradesPerUpdate) || isNaN(targetCapital) || initialCapital <= 0) {
+                alert('الرجاء إدخال قيم صحيحة لجميع الحقول. رأس المال الأولي يجب أن يكون أكبر من صفر.');
                 return;
             }
-            
+
             // حساب متوسط العائد لكل صفقة
-            const avgReturn = (winRate * profitRate) - ((1 - winRate) * lossRate);
-            
-            // حساب عدد الصفقات المطلوبة للوصول إلى الهدف
-            const totalTrades = Math.ceil(Math.log(targetCapital / initialCapital) / Math.log(1 + avgReturn));
-            
-            // عرض النتائج الأساسية
-            document.getElementById('avgReturn').textContent = (avgReturn * 100).toFixed(2) + "%";
-            document.getElementById('avgReturn').className = avgReturn >= 0 ? "summary-value positive" : "summary-value negative";
-            
-            document.getElementById('totalTrades').textContent = totalTrades;
-            
-            // محاكاة تطور رأس المال
-            let capital = initialCapital;
-            let trades = 0;
-            const dataPoints = [];
-            const tableData = [];
-            
-            // إضافة النقطة الأولى
-            dataPoints.push({ trades: 0, capital: initialCapital });
-            tableData.push({ trades: 0, capital: initialCapital, change: 0, growth: 0 });
-            
-            while (trades < totalTrades) {
-                const tradesInThisStep = Math.min(updateInterval, totalTrades - trades);
-                
-                for (let i = 0; i < tradesInThisStep; i++) {
-                    const isWin = Math.random() < winRate;
-                    const change = isWin ? capital * profitRate : -capital * lossRate;
-                    capital += change;
+            const averageReturnPerTrade = (winRate * profitPerTrade) - ((1 - winRate) * lossPerTrade);
+            document.getElementById('averageReturn').textContent = `${(averageReturnPerTrade * 100).toFixed(2)}%`;
+
+            // حساب تطور رأس المال ورسم المخطط
+            let currentCapital = initialCapital;
+            const capitalHistory = [initialCapital];
+            const tradeCounts = [0];
+            let tradesNeededForTarget = 0;
+            let targetReached = false;
+            const maxIterations = 2000; // لمنع الحلقات اللانهائية في حال عدم الوصول للهدف
+
+            for (let i = 1; i <= maxIterations * tradesPerUpdate; i++) {
+                if (Math.random() < winRate) {
+                    currentCapital *= (1 + profitPerTrade);
+                } else {
+                    currentCapital *= (1 - lossPerTrade);
                 }
-                
-                trades += tradesInThisStep;
-                
-                const change = capital - dataPoints[dataPoints.length - 1].capital;
-                const growth = (capital / initialCapital - 1) * 100;
-                
-                dataPoints.push({ trades, capital });
-                tableData.push({ trades, capital, change, growth });
+
+                if (i % tradesPerUpdate === 0) {
+                    capitalHistory.push(currentCapital);
+                    tradeCounts.push(i);
+                }
+
+                if (!targetReached && currentCapital >= targetCapital) {
+                    tradesNeededForTarget = i;
+                    targetReached = true;
+                }
             }
-            
-            // حساب معدل النمو الإجمالي
-            const totalGrowth = ((capital / initialCapital) - 1) * 100;
-            document.getElementById('totalGrowth').textContent = totalGrowth.toFixed(2) + "%";
-            document.getElementById('totalGrowth').className = totalGrowth >= 0 ? "summary-value positive" : "summary-value negative";
-            
-            // عرض البيانات في الجدول
-            const resultsBody = document.getElementById('resultsBody');
-            resultsBody.innerHTML = '';
-            
-            tableData.forEach(point => {
-                const row = document.createElement('tr');
-                
-                const tradesCell = document.createElement('td');
-                tradesCell.textContent = point.trades;
-                row.appendChild(tradesCell);
-                
-                const capitalCell = document.createElement('td');
-                capitalCell.textContent = point.capital.toFixed(2);
-                row.appendChild(capitalCell);
-                
-                const changeCell = document.createElement('td');
-                changeCell.textContent = point.change.toFixed(2);
-                changeCell.className = point.change >= 0 ? "positive" : "negative";
-                row.appendChild(changeCell);
-                
-                const growthCell = document.createElement('td');
-                growthCell.textContent = point.growth.toFixed(2) + "%";
-                growthCell.className = point.growth >= 0 ? "positive" : "negative";
-                row.appendChild(growthCell);
-                
-                resultsBody.appendChild(row);
-            });
-            
-            // عرض القسم النتائج
-            document.getElementById('resultsSection').style.display = 'block';
-            
-            // رسم المخطط البياني
-            drawChart(dataPoints);
-            
-            // التمرير إلى قسم النتائج
-            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+
+            // إذا لم يتم الوصول للهدف بعد الحد الأقصى للصفقات، يتم تحديث القيمة إلى "غير محدد" أو قيمة كبيرة
+            document.getElementById('requiredTrades').textContent = targetReached ? tradesNeededForTarget : 'غير محدد (يتطلب صفقات أكثر)';
+
+            // معدل النمو الإجمالي للعدد الحالي من الصفقات المعروضة
+            const totalGrowthPercentage = ((currentCapital - initialCapital) / initialCapital) * 100;
+            document.getElementById('totalGrowth').textContent = `${totalGrowthPercentage.toFixed(2)}%`;
+
+            renderChart(tradeCounts, capitalHistory, initialCapital, targetCapital);
         }
-        
-        function drawChart(dataPoints) {
-            const ctx = document.getElementById('capitalChart').getContext('2d');
-            
-            // إذا كان هناك مخطط موجود، قم بتدميره أولاً
+
+        function renderChart(labels, data, initialCapital, targetCapital) {
+            const ctx = document.getElementById('capitalGrowthChart').getContext('2d');
+
             if (capitalChart) {
-                capitalChart.destroy();
+                capitalChart.destroy(); // Destroy existing chart before creating a new one
             }
-            
-            // تحديد لون الخط بناءً على النتيجة النهائية
-            const finalGrowth = ((dataPoints[dataPoints.length-1].capital / dataPoints[0].capital) - 1) * 100;
-            const lineColor = finalGrowth >= 0 ? '#4cc9f0' : '#f72585';
-            
+
             capitalChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: dataPoints.map(point => point.trades),
+                    labels: labels,
                     datasets: [{
-                        label: 'رأس المال',
-                        data: dataPoints.map(point => point.capital),
-                        borderColor: lineColor,
-                        backgroundColor: finalGrowth >= 0 ? 'rgba(76, 201, 240, 0.1)' : 'rgba(247, 37, 133, 0.1)',
-                        borderWidth: 3,
+                        label: 'تطور رأس المال',
+                        data: data,
+                        borderColor: 'var(--primary-color)',
+                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
                         fill: true,
-                        tension: 0.4,
+                        tension: 0.3,
+                        pointRadius: 0
+                    },
+                    {
+                        label: 'رأس المال الأولي',
+                        data: Array(labels.length).fill(initialCapital),
+                        borderColor: '#FFC107', /* Amber */
+                        borderDash: [5, 5],
                         pointRadius: 0,
-                        pointHoverRadius: 5
-                    }]
+                        fill: false
+                    },
+                    {
+                        label: 'الهدف النهائي',
+                        data: Array(labels.length).fill(targetCapital),
+                        borderColor: '#F44336', /* Red */
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false
+                    }
+                ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            display: false
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    family: 'Cairo',
+                                    size: 14
+                                }
+                            }
                         },
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
-                                    return 'رأس المال: ' + context.parsed.y.toFixed(2);
+                                title: function(context) {
+                                    return `الصفقات: ${context[0].label}`;
                                 },
-                                afterLabel: function(context) {
-                                    const growth = ((context.parsed.y / dataPoints[0].capital) - 1) * 100;
-                                    return 'نسبة النمو: ' + growth.toFixed(2) + '%';
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += `$${context.parsed.y.toFixed(2)}`;
+                                    }
+                                    return label;
                                 }
+                            },
+                            bodyFont: {
+                                family: 'Cairo'
+                            },
+                            titleFont: {
+                                family: 'Cairo'
                             }
                         }
                     },
@@ -474,31 +347,44 @@
                             title: {
                                 display: true,
                                 text: 'عدد الصفقات',
-                                color: '#6c757d'
+                                font: {
+                                    family: 'Cairo',
+                                    size: 16,
+                                    weight: 'bold'
+                                }
                             },
-                            grid: {
-                                display: false
+                            ticks: {
+                                font: {
+                                    family: 'Cairo'
+                                }
                             }
                         },
                         y: {
                             title: {
                                 display: true,
-                                text: 'رأس المال',
-                                color: '#6c757d'
+                                text: 'رأس المال ($)',
+                                font: {
+                                    family: 'Cairo',
+                                    size: 16,
+                                    weight: 'bold'
+                                }
                             },
-                            beginAtZero: false,
-                            grid: {
-                                color: '#eee'
+                            ticks: {
+                                callback: function(value) {
+                                    return `$${value.toFixed(0)}`;
+                                },
+                                font: {
+                                    family: 'Cairo'
+                                }
                             }
                         }
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index'
                     }
                 }
             });
         }
+
+        // Initial calculation on load
+        window.onload = calculateGrowth;
     </script>
 </body>
 </html>
