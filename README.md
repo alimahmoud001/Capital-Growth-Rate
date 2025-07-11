@@ -273,7 +273,7 @@
         
         <div class="chart-container">
             <h2 style="margin-bottom: 1rem; color: var(--secondary-color); font-size: 1.25rem;">مخطط تطور رأس المال</h2>
-            <div style="width: 100%; min-width: 300px; hight: 400px;">
+            <div style="width: 100%; min-width: 300px; hight: 70v; min-hight: 400px;">
                 <canvas id="capitalChart"></canvas>
             </div>
         </div>
