@@ -177,8 +177,9 @@
             margin-top: 1.5rem;
             width: 100%;
             overflow-x: auto;
-            min-height: 400px;
             height: 70vh;
+            min-height: 400px;
+
         }
         
         .positive {
