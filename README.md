@@ -44,7 +44,7 @@ By 𝔸𝕝𝕚 𝕄𝕒𝕙𝕞𝕠𝕦𝕕
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 380px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -197,7 +197,7 @@ By 𝔸𝕝𝕚 𝕄𝕒𝕙𝕞𝕠𝕦𝕕
             }
         }
 
-        @media (max-width: 380px) {
+        @media (max-width: 480px) {
             .container {
                 padding: 10px;
             }
