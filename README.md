@@ -1,4 +1,4 @@
-𝔸𝕝𝕚 𝕄𝕒𝕙𝕞𝕠𝕦𝕕
+By 𝔸𝕝𝕚 𝕄𝕒𝕙𝕞𝕠𝕦𝕕 
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -41,43 +41,34 @@
             color: var(--text-color);
             line-height: 1.6;
             transition: all 0.3s ease;
-            min-height: 100vh;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 10px;
-            min-height: 100vh;
+            padding: 20px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
-            padding: 10px;
+            margin-bottom: 30px;
         }
 
         .header h1 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            margin-bottom: 5px;
-        }
-
-        .header p {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
         .theme-toggle {
-            position: fixed;
-            top: 10px;
-            left: 10px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
             background: var(--button-bg);
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 10px 15px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            z-index: 1000;
-            font-size: clamp(0.8rem, 2vw, 1rem);
         }
 
         .theme-toggle:hover {
@@ -85,50 +76,42 @@
         }
 
         .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: start;
         }
 
         .inputs-section {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 15px;
-            width: 100%;
+            padding: 25px;
         }
 
         .chart-section {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 15px;
-            min-height: 400px;
-            width: 100%;
-        }
-
-        .input-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
+            padding: 25px;
+            min-height: 500px;
         }
 
         .input-group {
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 20px;
         }
 
         .input-group label {
-            margin-bottom: 5px;
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
-            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .input-group input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background: var(--input-bg);
             border: 1px solid var(--input-border);
             color: var(--text-color);
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-size: 16px;
             transition: border-color 0.3s ease;
         }
 
@@ -137,33 +120,17 @@
             border-color: var(--button-bg);
         }
 
-        .ratio-input-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ratio-input {
-            flex: 1;
-            min-width: 60px;
-        }
-
-        .ratio-separator {
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
         .calculate-btn {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             background: var(--button-bg);
             color: white;
             border: none;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .calculate-btn:hover {
@@ -171,24 +138,18 @@
         }
 
         .results {
-            margin-top: 15px;
-            padding: 15px;
+            margin-top: 25px;
+            padding: 20px;
             background: var(--input-bg);
             border: 1px solid var(--input-border);
-        }
-
-        .results h3 {
-            margin-bottom: 10px;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
         }
 
         .result-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            padding: 6px 0;
+            margin-bottom: 10px;
+            padding: 8px 0;
             border-bottom: 1px solid var(--input-border);
-            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .result-item:last-child {
@@ -204,139 +165,60 @@
             color: var(--button-bg);
         }
 
-        .chart-section h2 {
-            margin-bottom: 15px;
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-        }
-
         #capitalChart {
-            max-height: 350px;
-            width: 100% !important;
-            height: auto !important;
+            max-height: 400px;
         }
 
-        /* Tablet styles */
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
             }
 
             .main-content {
-                flex-direction: row;
-                gap: 20px;
-            }
-
-            .inputs-section {
-                flex: 1;
-                min-width: 300px;
-                max-width: 400px;
-            }
-
-            .chart-section {
-                flex: 2;
-                min-height: 500px;
-            }
-
-            .input-grid {
                 grid-template-columns: 1fr;
-                gap: 18px;
-            }
-
-            .inputs-section,
-            .chart-section {
-                padding: 20px;
-            }
-
-            #capitalChart {
-                max-height: 400px;
-            }
-        }
-
-        /* Desktop styles */
-        @media (min-width: 1024px) {
-            .container {
-                padding: 30px;
-            }
-
-            .main-content {
-                gap: 30px;
-            }
-
-            .inputs-section {
-                padding: 25px;
-            }
-
-            .chart-section {
-                padding: 25px;
-                min-height: 600px;
-            }
-
-            .input-grid {
                 gap: 20px;
-            }
-
-            #capitalChart {
-                max-height: 500px;
-            }
-        }
-
-        /* Large desktop styles */
-        @media (min-width: 1200px) {
-            .input-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px 20px;
-            }
-
-            .calculate-btn {
-                grid-column: 1 / -1;
-            }
-
-            .results {
-                grid-column: 1 / -1;
-            }
-        }
-
-        /* Small mobile adjustments */
-        @media (max-width: 480px) {
-            .container {
-                padding: 8px;
             }
 
             .theme-toggle {
                 position: relative;
                 top: auto;
                 left: auto;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
                 width: 100%;
             }
 
             .inputs-section,
             .chart-section {
-                padding: 12px;
-            }
-
-            .input-group input {
-                padding: 8px;
-            }
-
-            .calculate-btn {
-                padding: 10px;
-            }
-
-            #capitalChart {
-                max-height: 250px;
+                padding: 20px;
             }
         }
 
-        /* Very small screens */
-        @media (max-width: 320px) {
-            .ratio-input-group {
-                flex-direction: column;
-                gap: 5px;
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
             }
 
-            .ratio-separator {
-                display: none;
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .inputs-section,
+            .chart-section {
+                padding: 15px;
+            }
+
+            .input-group input {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .calculate-btn {
+                padding: 12px;
+                font-size: 16px;
             }
         }
     </style>
@@ -354,61 +236,55 @@
             <div class="inputs-section">
                 <h2>المدخلات</h2>
                 
-                <div class="input-grid">
-                    <div class="input-group">
-                        <label for="initialCapital">رأس المال الابتدائي</label>
-                        <input type="number" id="initialCapital" value="10000" min="1" step="0.01">
+                <div class="input-group">
+                    <label for="initialCapital">رأس المال الابتدائي</label>
+                    <input type="number" id="initialCapital" value="10000" min="1" step="0.01">
+                </div>
+
+                <div class="input-group">
+                    <label for="targetCapital">الهدف النهائي</label>
+                    <input type="number" id="targetCapital" value="50000" min="1" step="0.01">
+                </div>
+
+                <div class="input-group">
+                    <label for="lossPercentage">نسبة الخسارة لكل صفقة (%)</label>
+                    <input type="number" id="lossPercentage" value="1" min="0.1" max="100" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label for="profitPercentage">نسبة الربح لكل صفقة ناجحة (%)</label>
+                    <input type="number" id="profitPercentage" value="2" min="0.1" max="1000" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label for="winRate">نسبة التداولات الناجحة (%)</label>
+                    <input type="number" id="winRate" value="60" min="1" max="100" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label for="tradesPerDay">عدد التداولات اليومية</label>
+                    <input type="number" id="tradesPerDay" value="5" min="1" max="100" step="1">
+                </div>
+
+                <button class="calculate-btn" onclick="calculateCapitalGrowth()">احسب التطور</button>
+
+                <div class="results" id="results" style="display: none;">
+                    <h3>النتائج</h3>
+                    <div class="result-item">
+                        <span class="result-label">رأس المال النهائي:</span>
+                        <span class="result-value" id="finalCapital">-</span>
                     </div>
-
-                    <div class="input-group">
-                        <label for="targetCapital">الهدف النهائي</label>
-                        <input type="number" id="targetCapital" value="50000" min="1" step="0.01">
+                    <div class="result-item">
+                        <span class="result-label">عدد الأيام:</span>
+                        <span class="result-value" id="totalDays">-</span>
                     </div>
-
-                    <div class="input-group">
-                        <label for="riskPercentage">نسبة المخاطرة لكل صفقة (%)</label>
-                        <input type="number" id="riskPercentage" value="1" min="0.1" max="100" step="0.1">
+                    <div class="result-item">
+                        <span class="result-label">إجمالي الصفقات:</span>
+                        <span class="result-value" id="totalTrades">-</span>
                     </div>
-
-                    <div class="input-group">
-                        <label>نسبة الربح إلى المخاطرة</label>
-                        <div class="ratio-input-group">
-                            <input type="number" id="rewardRatio" class="ratio-input" value="2" min="0.1" max="100" step="0.1">
-                            <span class="ratio-separator">:</span>
-                            <input type="number" id="riskRatio" class="ratio-input" value="1" min="0.1" max="100" step="0.1">
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="winRate">نسبة التداولات الناجحة (%)</label>
-                        <input type="number" id="winRate" value="60" min="1" max="100" step="1">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="tradesPerDay">عدد التداولات اليومية</label>
-                        <input type="number" id="tradesPerDay" value="5" min="1" max="100" step="1">
-                    </div>
-
-                    <button class="calculate-btn" onclick="calculateCapitalGrowth()">احسب التطور</button>
-
-                    <div class="results" id="results" style="display: none;">
-                        <h3>النتائج</h3>
-                        <div class="result-item">
-                            <span class="result-label">رأس المال النهائي:</span>
-                            <span class="result-value" id="finalCapital">-</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-label">عدد الأيام:</span>
-                            <span class="result-value" id="totalDays">-</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-label">إجمالي الصفقات:</span>
-                            <span class="result-value" id="totalTrades">-</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-label">نسبة النمو:</span>
-                            <span class="result-value" id="growthRate">-</span>
-                        </div>
+                    <div class="result-item">
+                        <span class="result-label">نسبة النمو:</span>
+                        <span class="result-value" id="growthRate">-</span>
                     </div>
                 </div>
             </div>
@@ -459,9 +335,8 @@
             // Get input values
             const initialCapital = parseFloat(document.getElementById('initialCapital').value);
             const targetCapital = parseFloat(document.getElementById('targetCapital').value);
-            const riskPercentage = parseFloat(document.getElementById('riskPercentage').value) / 100;
-            const rewardRatio = parseFloat(document.getElementById('rewardRatio').value);
-            const riskRatio = parseFloat(document.getElementById('riskRatio').value);
+            const lossPercentage = parseFloat(document.getElementById('lossPercentage').value) / 100;
+            const profitPercentage = parseFloat(document.getElementById('profitPercentage').value) / 100;
             const winRate = parseFloat(document.getElementById('winRate').value) / 100;
             const tradesPerDay = parseInt(document.getElementById('tradesPerDay').value);
 
@@ -470,14 +345,6 @@
                 alert('يرجى التأكد من أن رأس المال الابتدائي أكبر من صفر والهدف النهائي أكبر من رأس المال الابتدائي');
                 return;
             }
-
-            if (rewardRatio <= 0 || riskRatio <= 0) {
-                alert('يرجى التأكد من أن نسبة الربح إلى المخاطرة صحيحة');
-                return;
-            }
-
-            // Calculate reward to risk ratio
-            const rewardToRiskRatio = rewardRatio / riskRatio;
 
             // Initialize variables
             let currentCapital = initialCapital;
@@ -491,16 +358,14 @@
                 
                 // Daily trades simulation
                 for (let trade = 0; trade < tradesPerDay; trade++) {
-                    const riskAmount = currentCapital * riskPercentage;
-                    const profitAmount = riskAmount * rewardToRiskRatio;
                     const randomValue = Math.random();
                     
                     if (randomValue <= winRate) {
                         // Winning trade
-                        currentCapital += profitAmount;
+                        currentCapital += currentCapital * profitPercentage;
                     } else {
                         // Losing trade
-                        currentCapital -= riskAmount;
+                        currentCapital -= currentCapital * lossPercentage;
                     }
                     
                     // Stop if capital becomes zero or negative
@@ -622,4 +487,7 @@
         // Initialize with default calculation
         window.addEventListener('load', function() {
             calculateCapitalGrowth();
-     
+        });
+    </script>
+</body>
+</html>
