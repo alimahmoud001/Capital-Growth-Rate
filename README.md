@@ -197,7 +197,7 @@ By 𝔸𝕝𝕚 𝕄𝕒𝕙𝕞𝕠𝕦𝕕
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 380px) {
             .container {
                 padding: 10px;
             }
